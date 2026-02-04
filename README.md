@@ -19,7 +19,7 @@ webstorm
 code
 ```
 
-then running the script will cause the script to ask the user to select either `webstorm` (to open the folder in JetBrains Webstorm) or `code` (to open in Visual Studio Code).
+then running the script will cause the script to ask the user to select either `webstorm` (to open the folder in JetBrains WebStorm) or `code` (to open in Visual Studio Code).
 
 I'd recommend modifying your local Path to be able to run the Python script from anywhere on your machine, and then adding `.ide` to your global gitignore. On Windows, you can add the script to your path by creating a `.bat` batch script to run the file, e.g.
 

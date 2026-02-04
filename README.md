@@ -7,11 +7,19 @@ The Python file takes one argument: the directory to open. It reads a `.ide` fil
 For example, the `.ide` file might look like:
 
 ```
+idea
+```
+
+Running the script will automatically run the `idea` command to open the directory in JetBrains IDEA.
+
+If the `.ide` file looks like this:
+
+```
 webstorm
 code
 ```
 
-Running the script will cause the script to ask the user to select either `webstorm` (to open the folder in JetBrains Webstorm) or `code` (to open in Visual Studio Code).
+then running the script will cause the script to ask the user to select either `webstorm` (to open the folder in JetBrains Webstorm) or `code` (to open in Visual Studio Code).
 
 I'd recommend modifying your local Path to be able to run the Python script from anywhere on your machine, and then adding `.ide` to your global gitignore. On Windows, you can add the script to your path by creating a `.bat` batch script to run the file, e.g.
 

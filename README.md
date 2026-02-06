@@ -21,4 +21,4 @@ code
 
 then running the script will cause the script to ask the user to select either `webstorm` (to open the folder in JetBrains WebStorm) or `code` (to open in Visual Studio Code).
 
-I'd recommend adding the repository folder to your local Path so you can run the Python script from anywhere on your machine, and then adding `.ide` to your global gitignore. I have included a batch script so you can run the script anywhere on your machine on Windows.
+I'd recommend adding the repository folder to your local Path so you can run the Python script from anywhere on your machine, and then adding `.ide` to your global gitignore. I have included a batch script (for Windows) and a bash script (for Unix-like) so you can run the script anywhere on your machine with the simple command `ide`.

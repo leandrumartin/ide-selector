@@ -1,7 +1,11 @@
-import sys
+import argparse
 import os
 
-path = sys.argv[1]
+parser = argparse.ArgumentParser(description="Open a folder in your preferred IDE or editor.")
+parser.add_argument("directory", help="Path to the folder you want to open.")
+args = parser.parse_args()
+
+path = args.directory
 jbeditor_file = path + "/.ide"
 editors = []
 

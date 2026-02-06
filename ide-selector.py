@@ -6,10 +6,10 @@ parser.add_argument("directory", help="Path to the folder you want to open.")
 args = parser.parse_args()
 
 path = args.directory
-jbeditor_file = path + "/.ide"
+ide_file = path + "/.ide"
 editors = []
 
-with open(jbeditor_file, "r") as file:
+with open(ide_file, "r") as file:
     for line in file:
         editors.append(line.strip())
 

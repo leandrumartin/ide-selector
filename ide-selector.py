@@ -1,4 +1,5 @@
 import argparse
+import os
 import subprocess
 
 parser = argparse.ArgumentParser(description="Open a folder in your preferred IDE or editor.")
@@ -8,6 +9,20 @@ args = parser.parse_args()
 path = args.directory
 ide_file = path + "/.ide"
 editors = []
+
+def select_default_editor():
+    ide_name = input("Enter the command of your preferred editor to open the selected directory:\n").strip().lower()
+    with open(ide_file, "w") as file:
+        file.write(f"{ide_name}\n")
+    return ide_name
+
+if not os.path.exists(ide_file):
+    create_file = input(f"No .ide file found in {path}. Would you like to create one? (Y/n)\n").strip().lower()
+    if create_file.startswith("y") or create_file == "":
+        select_default_editor()
+    else:
+        print("No .ide file created. Exiting.")
+        exit(0)
 
 with open(ide_file, "r") as file:
     for line in file:
@@ -21,7 +36,7 @@ def parse_selection(selection):
     selected_editor = None
     try:
         # Interpret selection as an index
-        selected_editor = editors[int(selection) - 1]
+        selected_editor = editors[int(selection) - 1].strip().lower()
     except ValueError:
         # Interpret selection as a substring
         filtered = filter(lambda x: selection in x, editors)
@@ -35,7 +50,11 @@ def parse_selection(selection):
     return selected_editor
 
 command = None
-if len(editors) == 1:
+if (len(editors) == 0 or all(editor.strip() == "" for editor in editors)):
+    print("No editors found in .ide file.")
+    ide_command = select_default_editor()
+    command = f"{ide_command} {path}"
+elif len(editors) == 1:
     command = f"{editors[0]} {path}"
 else:
     print("Available editors:")

@@ -16,18 +16,6 @@ def select_default_editor():
         file.write(f"{ide_name}\n")
     return ide_name
 
-if not os.path.exists(ide_file):
-    create_file = input(f"No .ide file found in {path}. Would you like to create one? (Y/n)\n").strip().lower()
-    if create_file.startswith("y") or create_file == "":
-        select_default_editor()
-    else:
-        print("No .ide file created. Exiting.")
-        exit(0)
-
-with open(ide_file, "r") as file:
-    for line in file:
-        editors.append(line.strip())
-
 def parse_selection(selection):
     """Parse user selection to determine the chosen editor."""
     def handle_index_error():
@@ -48,6 +36,18 @@ def parse_selection(selection):
     except IndexError:
         selected_editor = handle_index_error()
     return selected_editor
+
+if not os.path.exists(ide_file):
+    create_file = input(f"No .ide file found in {path}. Would you like to create one? (Y/n)\n").strip().lower()
+    if create_file.startswith("y") or create_file == "":
+        select_default_editor()
+    else:
+        print("No .ide file created. Exiting.")
+        exit(0)
+
+with open(ide_file, "r") as file:
+    for line in file:
+        editors.append(line.strip())
 
 command = None
 if (len(editors) == 0 or all(editor.strip() == "" for editor in editors)):

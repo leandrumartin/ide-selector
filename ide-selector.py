@@ -1,5 +1,5 @@
 import argparse
-import os
+import subprocess
 
 parser = argparse.ArgumentParser(description="Open a folder in your preferred IDE or editor.")
 parser.add_argument("directory", help="Path to the folder you want to open.")
@@ -45,4 +45,4 @@ else:
     selected_editor = parse_selection(selection)   
     command = f"{selected_editor} {path}"
 print(command)
-os.system(command)
+subprocess.run(command, shell=True, capture_output=True)
